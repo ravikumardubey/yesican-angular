@@ -1,0 +1,31 @@
+.navbar {
+  height: 70px;
+}
+
+@media (min-width: 992px) {
+  .nav-item {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+}
+
+.nav-link {
+  font-weight: bold;
+  color: black;
+}
+
+.nav-link.active,
+
+.nav-link:hover {
+  background-color: #FFF315;
+
+}
+
+
+.nav-link:focus-visible,
+.navbar-toggler:focus {
+  box-shadow: none;
+}

@@ -1,0 +1,92 @@
+<div
+  class="navbar-menu border-top bg-light app-side-nav"
+  [ngClass]="{
+    'app-side-nav-expand': sideMenuExpanded
+  }"
+>
+  <div class="sidemenu-arrow cursor-pointer">
+    <div
+      class="nav-menu-option border cursor-pointer rounded-circle d-flex justify-content-center align-items-center"
+      (click)="expandSideMenu()"
+    >
+      <iconify-icon
+        icon="ri:arrow-right-s-line"
+        *ngIf="!sideMenuExpanded"
+        [ngClass]="sideMenuExpanded ? 'fs-4' : 'fs-3'"
+      ></iconify-icon>
+      <iconify-icon
+        icon="ri:arrow-left-s-line"
+        *ngIf="sideMenuExpanded"
+        class="fs-4"
+      ></iconify-icon>
+    </div>
+  </div>
+
+  <div
+    class="sidebar-menu-scroll d-flex flex-column justify-content-between h-100"
+    [ngClass]="sideMenuExpanded ? 'pt-3 ps-3' : ''"
+  >
+    <ul class="nav sidemenu-nav mb-auto">
+      <li
+        *ngFor="let item of menuItems"
+        class="nav-item"
+        [ngClass]="sideMenuExpanded ? '' : 'nav-item-expand'"
+      >
+        <a class="nav-link fs-6 cursor-pointer" (click)="toggleMenu(item)">
+          <iconify-icon [icon]="item.icon" inline></iconify-icon>
+          <span class="px-2"> {{ item.label }} </span>
+          <span *ngIf="item.subItems && item.subItems.length"
+            ><iconify-icon
+              icon="mdi:chevron-right"
+              inline
+              *ngIf="!item.expand"
+            ></iconify-icon>
+            <iconify-icon
+              icon="mdi:chevron-down"
+              inline
+              *ngIf="item.expand"
+            ></iconify-icon
+          ></span>
+        </a>
+        <ul
+          class="list-unstyled"
+          *ngIf="
+            item.subItems &&
+            item.subItems.length &&
+            item.expand &&
+            sideMenuExpanded
+          "
+        >
+          <li *ngFor="let subItem of item.subItems" class="nav-item pb-0">
+            <a
+              class="nav-link pt-0 fs-6"
+              [routerLink]="subItem.link"
+              routerLinkActive="active"
+              ><iconify-icon icon="octicon:dash-16" inline></iconify-icon>
+              <span class="ps-2"> {{ subItem.label }} </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="text-center my-3">
+      <div
+        class="btn btn-sm btn-outline-primary"
+        (click)="logout()"
+        [ngClass]="sideMenuExpanded ? '' : 'nav-item-expand'"
+      >
+        <iconify-icon inline icon="mdi:logout"></iconify-icon>
+        <span>Logout</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  [ngClass]="{
+  'vertical-overlay':  sideMenuExpanded,
+
+}"
+  (click)="SidebarHide()"
+></div>

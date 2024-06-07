@@ -1,0 +1,14 @@
+<div *ngIf="isServer" class="server-loading">
+  <div class="center-content">
+    <img
+      src="assets/images/logo.webp"
+      alt="AM logo"
+      class="logo-dark"
+      width="90"
+      height="80"
+    />
+    <div class="text-margin">Please Wait</div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+<app-toasts aria-live="polite" aria-atomic="true"></app-toasts>

@@ -1,0 +1,57 @@
+<div class="container-am py-5 bg-success-subtle" *ngIf="list.length">
+  <div class="row justify-content-center">
+    <div class="col-md-9 col-10 d-flex flex-column py-3 py-md-5">
+      <div class=" ">
+        <div class="card card-body quote-card p-3 p-md-5">
+          <div class="position-relative">
+            <span class="quote">
+              <iconify-icon
+                icon="fa6-solid:quote-left"
+                class="quote-icon text-ys"
+              ></iconify-icon>
+            </span>
+            <ngb-carousel
+              [showNavigationArrows]="false"
+              [showNavigationIndicators]="false"
+              #carousel
+              (slid)="onSlide($event)"
+            >
+              <ng-template
+                ngbSlide
+                [id]="item.id.toString()"
+                *ngFor="let item of list"
+              >
+                <span class="fs-4">{{ item.content }}</span>
+
+                <span class="fs-5 fw-bold pt-3 d-block">
+                  {{ item.clientName }}</span
+                >
+                <span class="d-block fs-6">{{ item.clientTitle }}</span>
+              </ng-template>
+            </ngb-carousel>
+            <div
+              class="position-absolute bottom-0 end-0"
+              *ngIf="list.length > 1"
+            >
+              <div class="d-flex">
+                <div
+                  class="bg-ys rounded-circle me-2 cursor-pointer align-inline-center arrow-icon"
+                  (click)="previous()"
+                >
+                  <iconify-icon icon="ic:round-chevron-left"></iconify-icon>
+                </div>
+
+                <div
+                  class="bg-ys rounded-circle cursor-pointer align-inline-center arrow-icon"
+                  (click)="next()"
+                >
+                  <iconify-icon icon="ic:round-chevron-right"></iconify-icon>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

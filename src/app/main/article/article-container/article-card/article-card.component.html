@@ -1,0 +1,17 @@
+<div
+  class="card blog-card border-0 cursor-pointer"
+  (click)="openArticleDetailPage(article.id)"
+>
+  <div class="card-category">{{ article.categoryDetail.name }}</div>
+  <div class="card-media rounded-top">
+    <img [src]="article.featuredImageUrl" class="w-100 h-100" alt="" />
+  </div>
+  <div class="card-body">
+    <h4 class="fw-bold">
+      {{ article.title }}
+    </h4>
+    <p class="d-flex align-items-center fs-6">
+      {{ article.modifiedAt | date }}
+    </p>
+  </div>
+</div>

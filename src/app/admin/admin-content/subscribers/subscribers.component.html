@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-between py-3">
+  <div>
+    <h2>Subscribers</h2>
+  </div>
+  <button class="btn btn-sm btn-primary" (click)="copyToClipboard()">
+    Copy All Emails
+  </button>
+</div>
+<div class="table-responsive">
+  <table class="table align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [checked]="isAllCheckBoxChecked()"
+              (change)="checkAllCheckBox($event)"
+            />
+            <label class="form-check-label" for="responsivetableCheck"></label>
+          </div>
+        </th>
+
+        <th scope="col">Email IDs</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!showLoading">
+      <tr *ngFor="let item of subscribers; let i = index">
+        <th scope="row">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ item.id }}"
+              [(ngModel)]="subscribers[i].checked"
+            />
+            <label
+              class="form-check-label"
+              for="responsivetableCheck01"
+            ></label>
+          </div>
+        </th>
+        <td>
+          {{ item.email }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-container *ngIf="count > 12 && !showLoading">
+    <ngb-pagination
+      (pageChange)="selectPage($event)"
+      [pageSize]="12"
+      [(page)]="page"
+      [maxSize]="5"
+      [rotate]="true"
+      [collectionSize]="count"
+      [boundaryLinks]="true"
+      class="d-flex justify-content-end"
+    ></ngb-pagination>
+  </ng-container>
+</div>
+
+<div *ngIf="showLoading">
+  <div
+    class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+  >
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="!showLoading && subscribers.length == 0">
+  <div
+    class="d-flex flex-column justify-content-center align-items-center w-100 h-100 my-5 py-5"
+  >
+    <img src="assets/images/no-data.svg" alt="no data" />
+    No Subscribers
+  </div>
+</div>

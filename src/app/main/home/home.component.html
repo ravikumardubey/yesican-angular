@@ -1,0 +1,31 @@
+<div class="container-am carousel-padding home-bg">
+  <div class="position-relative overflow-hidden home-content">
+    <div class="position-absolute cont-top start-0 translate-middle-y w-100">
+      <div class="container-am">
+        <div class="row justify-content-center pt-5 pt-md-0">
+          <div class="col-11 col-sm-10 cont-text">
+            <div class="sub-title-ys text-ys">
+              <span class="text-white">Transformation Academy</span>
+            </div>
+            <div class="title-ys text-white fw-bolder">
+              YES <span class="text-ys">I</span> CAN
+            </div>
+            <div class="sub-title-ys text-ys" [style.min-height.px]="100">
+              <span class="text-white">Academy for</span>
+              <span class="fw-bold"> {{ titleText }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showHomeContent">
+  <app-about-home></app-about-home>
+  <app-testimonial></app-testimonial>
+  <app-home-services></app-home-services>
+  <app-about-mentor></app-about-mentor>
+  <app-home-founder-quotes></app-home-founder-quotes>
+  <app-home-become-a-volunteer></app-home-become-a-volunteer>
+  <app-home-dashboard></app-home-dashboard>
+</div>

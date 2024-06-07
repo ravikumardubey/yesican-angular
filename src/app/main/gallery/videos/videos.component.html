@@ -1,0 +1,31 @@
+<app-page-title [title]="'Video Gallery'"></app-page-title>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let video of videos">
+      <div class="card">
+        <iframe
+          class="rounded-top video-item"
+          [src]="sanitizeUrl(video.youtubeUrl)"
+          allowfullscreen
+        ></iframe>
+        <div class="card-footer">
+          <div class="text-nowrap text-truncate" [title]="video.title">
+            {{ video.title }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-center" *ngIf="hasNextPage && !showLoading">
+      <div class="btn btn-primary" (click)="loadMore()">Load More</div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showLoading">
+  <div
+    class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+  >
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

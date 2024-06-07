@@ -1,0 +1,15 @@
+<div
+  class="container-am"
+  [style.background-image]="image ? 'url(' + image + ')' : ''"
+  [ngClass]="image ? 'bg-image' : 'bg-page-title-pattern'"
+>
+  <div class="row g-0 site-page-title">
+    <div class="col-12">
+      <div
+        class="fs-1 text-capitalize fw-bold text-white z-1 position-relative"
+      >
+        {{ title }}
+      </div>
+    </div>
+  </div>
+</div>

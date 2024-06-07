@@ -1,0 +1,22 @@
+<app-page-title [title]="'Quotes'"></app-page-title>
+<div class="container-am py-5">
+  <div class="row">
+    <div class="col-12">
+      <div
+        class="card mb-4 shadow-sm bg-light bg-gradient border-0 quote-card"
+        *ngFor="let item of quotes"
+      >
+        <div class="card-body">
+          <figure class="text-center m-0">
+            <blockquote class="blockquote">
+              <p>{{ item }}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer text-end m-0">
+              Dr.<cite title="Source Title">Ashutosh Karnatak</cite>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

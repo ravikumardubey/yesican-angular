@@ -1,0 +1,76 @@
+<div class="container-am px-0 py-5 bg-pattern">
+  <div class="row g-0 py-3">
+    <div class="col-12">
+      <div class="row g-0">
+        <div
+          class="col-xl-3 col-md-6 bg-image position-relative"
+          *ngIf="totalMagazines"
+        >
+          <div class="p-5 position-relative z-1">
+            <h1 class="text-center text-ys fw-bolder fs-1 mb-0 value">
+              <span
+                [CountTo]="totalMagazines"
+                class="counter-value"
+                [duration]="1"
+              ></span>
+            </h1>
+            <p class="fw-bold fs-5 text-center text-shadow text-white mb-0">
+              TOTAL MAGAZINE
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-xl-3 col-md-6 bg-image position-relative"
+          *ngIf="totalBooks"
+        >
+          <div class="p-5 position-relative z-1">
+            <h1 class="text-center text-ys fw-bolder fs-1 mb-0 value">
+              <span
+                [CountTo]="totalBooks"
+                class="counter-value"
+                [duration]="1"
+              ></span>
+            </h1>
+            <p class="fw-bold fs-5 text-center text-shadow text-white mb-0">
+              TOTAL BOOKS
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-xl-3 col-md-6 bg-image position-relative"
+          *ngIf="successYears"
+        >
+          <div class="p-5 position-relative z-1">
+            <h1 class="text-center text-ys fw-bolder fs-1 mb-0 value">
+              <span
+                [CountTo]="successYears"
+                class="counter-value"
+                [duration]="1"
+              ></span>
+            </h1>
+            <p class="fw-bold fs-5 text-center text-shadow text-white mb-0">
+              SUCCESS YEARS
+            </p>
+          </div>
+        </div>
+        <div
+          class="col-xl-3 col-md-6 bg-image position-relative"
+          *ngIf="totalArticles"
+        >
+          <div class="p-5 position-relative z-1">
+            <h1 class="text-center text-ys fw-bolder fs-1 mb-0 value">
+              <span
+                [CountTo]="totalArticles"
+                class="counter-value"
+                [duration]="1"
+              ></span>
+            </h1>
+            <p class="fw-bold fs-5 text-center text-shadow text-white mb-0">
+              ARTICLES
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

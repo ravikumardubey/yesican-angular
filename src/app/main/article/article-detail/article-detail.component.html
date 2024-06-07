@@ -1,0 +1,35 @@
+<div class="container-am" *ngIf="!showLoading">
+  <div class="row">
+    <div class="col-12">
+      <img
+        [src]="article.featuredImageUrl"
+        class="w-100 article-image"
+        alt="Article Image"
+      />
+    </div>
+  </div>
+  <div class="row p-3">
+    <div class="col-12">
+      <p class="m-0">
+        <span class="pe-2" *ngFor="let item of article.tagDetail">{{
+          item.name
+        }}</span>
+      </p>
+      <div class="badge bg-ys">
+        {{ article.categoryDetail.name }}
+      </div>
+      <h2 class="fw-bolder">{{ article.title }}</h2>
+      <p class="text-secondary">Updated on {{ article.modifiedAt | date }}</p>
+    </div>
+    <div class="col-12" [innerHTML]="article.content | safeHtml"></div>
+  </div>
+</div>
+<div *ngIf="showLoading">
+  <div
+    class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+  >
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>

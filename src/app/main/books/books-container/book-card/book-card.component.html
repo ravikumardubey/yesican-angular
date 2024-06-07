@@ -1,0 +1,51 @@
+<div class="card mb-4 position-relative">
+  <div class="row">
+    <div class="col-12">
+      <div class="position-relative w-100 h-100">
+        <img
+          [src]="book.imageUrl"
+          class="rounded-top rounded-lg-0 rounded-lg-start book-img"
+          alt="book"
+        />
+        <div class="position-absolute bottom-0 start-0 p-2">
+          <div class="badge bg-warning fs-6 text-white">
+            <iconify-icon
+              icon="material-symbols:language"
+              inline
+            ></iconify-icon>
+            {{ book.language }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card-body custom-body p-2">
+        <div class="vstack gap-3">
+          <h5
+            class="text-truncate-2 m-0 d-block fw-bold"
+            title="{{ book.title }}"
+          >
+            {{ book.title }}
+          </h5>
+
+          <p class="text-truncate m-0" title="{{ book.publisher }}">
+            Publisher: {{ book.publisher }}
+          </p>
+          <p class="m-0">
+            <iconify-icon
+              icon="fluent-mdl2:publish-course"
+              class="pe-1"
+            ></iconify-icon>
+            {{ book.publishDate | date }}
+          </p>
+        </div>
+      </div>
+      <a [href]="book.cartUrl" class="text-decoration-none" target="_blank">
+        <div class="btn btn-outline-primary rounded-top-0 p-2 fs-6 w-100">
+          <iconify-icon icon="bx:cart" inline></iconify-icon>
+          Buy Now
+        </div></a
+      >
+    </div>
+  </div>
+</div>

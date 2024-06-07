@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-between flex-wrap py-3">
+  <div>
+    <h2>Photos</h2>
+  </div>
+  <div>
+    <div class="d-flex">
+      <div class="me-2">
+        <div ngbDropdown container="body">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            ngbDropdownToggle
+          >
+            {{ selectedCategory || "Filter by Category" }}
+          </button>
+          <div ngbDropdownMenu>
+            <button
+              *ngFor="let category of categories"
+              ngbDropdownItem
+              (click)="updateCategory(category)"
+            >
+              {{ category.name }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div
+          class="btn btn-danger me-2"
+          (click)="reset()"
+          *ngIf="selectedCategory"
+        >
+          Reset
+        </div>
+      </div>
+
+      <div>
+        <div class="btn btn-primary fs-6" (click)="showImageAdd()">
+          <iconify-icon icon="mdi:plus" class="fs-6 pe-2" inline></iconify-icon
+          >Add Photos
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="addImage">
+  <app-add-photos (close)="hideImageAdd($event)"></app-add-photos>
+</div>
+<div class="table-responsive">
+  <table class="table align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [checked]="isAllCheckBoxChecked()"
+              (change)="checkAllCheckBox($event)"
+            />
+            <label class="form-check-label" for="responsivetableCheck"></label>
+          </div>
+        </th>
+        <th scope="col">Photos</th>
+        <th scope="col">Category</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!showLoading">
+      <tr *ngFor="let item of images; let i = index">
+        <th scope="row">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ item.id }}"
+              [(ngModel)]="images[i].checked"
+            />
+            <label
+              class="form-check-label"
+              for="responsivetableCheck01"
+            ></label>
+          </div>
+        </th>
+        <td>
+          <img
+            [src]="item.imageUrl"
+            height="150"
+            class="object-fit-contain"
+            alt=""
+          />
+        </td>
+        <td class="overflow-hidden">
+          <div ngbDropdown container="body">
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-sm"
+              ngbDropdownToggle
+            >
+              {{ item.imageCategoryDetail.name }}
+            </button>
+            <div ngbDropdownMenu>
+              <button
+                *ngFor="let category of categories"
+                ngbDropdownItem
+                (click)="changeImageCategory(item.id, category)"
+              >
+                {{ category.name }}
+              </button>
+            </div>
+          </div>
+        </td>
+        <th scope="row">
+          <div class="d-flex h-100 flex-row">
+            <div class="btn btn-danger btn-sm" (click)="deletePhoto(item.id)">
+              <iconify-icon icon="mdi:trash" inline></iconify-icon>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <div class="col-12 text-center" *ngIf="hasNextPage && !showLoading">
+    <div class="btn btn-primary" (click)="loadMore()">Load More</div>
+  </div>
+  <div *ngIf="showLoading">
+    <div
+      class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+    >
+      <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!showLoading && images.length === 0">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center w-100 h-100 my-5 py-5"
+    >
+      <img src="assets/images/no-data.svg" alt="no data" />
+      No Photos
+    </div>
+  </div>
+</div>

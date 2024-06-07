@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header"><h4 class="mb-0">Add Photo</h4></div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <div class="row pb-3">
+          <div class="col-lg-6">
+            <select class="form-select" [(ngModel)]="selectedCategory">
+              <option [value]="0" disabled>Select Photo Category</option>
+              <option [value]="item.id" *ngFor="let item of categories">
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <p
+          class="text-primary text-center cursor-pointer border rounded image-add"
+          (click)="fileInput.click()"
+          *ngIf="!image"
+        >
+          <iconify-icon icon="mdi:upload" inline></iconify-icon> Choose File
+          <input
+            #fileInput
+            type="file"
+            accept="image/jpeg, image/png"
+            (change)="onSelect($event, imageModal)"
+            hidden
+          />
+        </p>
+        <div
+          *ngIf="image"
+          class="image-add position-relative border rounded mb-3"
+        >
+          <div
+            class="position-absolute top-0 end-0 cursor-pointer"
+            (click)="clearImage()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#dc3545"
+                d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"
+              />
+            </svg>
+          </div>
+          <img
+            [src]="image"
+            class="rounded object-fit-contain"
+            width="90%"
+            height="200"
+            alt="article image"
+          />
+        </div>
+      </div>
+      <div class="col-12">
+        <div
+          class="d-flex flex-column justify-content-center align-items-start p-0 m-0 pb-2"
+          *ngIf="isUploadStarted"
+        >
+          <div class="fw-bold">Uploading Photo</div>
+
+          <p class="m-0 py-2 w-100">
+            <ngb-progressbar
+              type="info"
+              [value]="progress"
+              height="5px"
+            ></ngb-progressbar>
+          </p>
+          <div class="fs-12 text-muted">
+            {{ progress.toString() + "%" }} completed
+            <span *ngIf="remainingTime">
+              . {{ remainingTime | timeFormat }} remaining
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-secondary me-2" (click)="closeImageAdd()">
+      Close
+    </button>
+    <button
+      class="btn btn-primary"
+      (click)="uploadFile()"
+      *ngIf="!isUploadStarted"
+    >
+      Upload
+    </button>
+  </div>
+</div>
+<ng-template #imageModal let-modal>
+  <app-image-cropper
+    (closeModal)="closeModal()"
+    (image)="updateImage($event)"
+    (croppedImageUpdate)="updateCroppedImage($event)"
+    [imageChangedEvent]="imageChangedEvent"
+    [imageFileName]="imageFileName"
+    [aspectRatio]="1 / 1"
+    [maintainAspectRatio]="false"
+  ></app-image-cropper>
+</ng-template>

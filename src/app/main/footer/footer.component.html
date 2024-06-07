@@ -1,0 +1,90 @@
+<div class="container-am footer-bg position-relative">
+  <div class="footer-bg-overlay"></div>
+  <div class="row py-5 justify-content-center position-relative z-1">
+    <div class="col-12 col-lg-12">
+      <div class="row justify-content-between">
+        <div class="col-12 col-lg-4 pb-3">
+          <p class="text-white">
+            One area of life where everybody is needy irrespective of caste,
+            creed, colour, status is the attitude or thinking or mindset. It is
+            one thing that can change one's life and of countless others to whom
+            the person is connected to. With this objective in mind, the project
+            of developing self-development course on positive thinking is
+            undertaken through Yes I Can Academy.
+          </p>
+
+          <span
+            ><iconify-icon class="fs-3" icon="logos:facebook"></iconify-icon
+          ></span>
+          <span
+            ><iconify-icon class="fs-3 px-3" icon="logos:twitter"></iconify-icon
+          ></span>
+          <span
+            ><iconify-icon class="fs-3" icon="devicon:linkedin"></iconify-icon
+          ></span>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div>
+            <ul class="list-unstyled">
+              <li routerLink="/vision">
+                <iconify-icon icon="ep:arrow-right-bold" inline></iconify-icon
+                ><span class="ps-2">Vision</span>
+              </li>
+              <li routerLink="/quotes">
+                <iconify-icon icon="ep:arrow-right-bold" inline></iconify-icon
+                ><span class="ps-2">Founder Quotes</span>
+              </li>
+
+              <li routerLink="/magazine">
+                <iconify-icon icon="ep:arrow-right-bold" inline></iconify-icon
+                ><span class="ps-2">Magazine</span>
+              </li>
+              <li routerLink="/gallery/videos">
+                <iconify-icon icon="ep:arrow-right-bold" inline></iconify-icon
+                ><span class="ps-2">Youtube</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-3">
+          <div class="pb-3">
+            <div>
+              <p>
+                <iconify-icon
+                  icon="ic:round-mail"
+                  class="text-ys"
+                  inline
+                ></iconify-icon>
+                <span class="ps-2 text-white">info@yesican.org.in</span>
+              </p>
+            </div>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="">
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="Your email here..."
+              />
+              <button class="btn btn-ys border my-3" type="submit">
+                Subscribe Now
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-12">
+          <p class="text-white m-0">
+            Copyright
+            <iconify-icon
+              icon="ant-design:copyright-outlined"
+              inline
+            ></iconify-icon>
+            {{ currentYear }} Yes I Can
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

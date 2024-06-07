@@ -1,0 +1,23 @@
+<ng-template #confirmationModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="modal-title">
+      {{ modalTitle }}
+    </h5>
+    <div class="btn-close cursor-pointer" (click)="d('Cross click')"></div>
+  </div>
+  <div class="modal-body">
+    <p [innerHTML]="modalBody"></p>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn rounded btn-outline-secondary"
+      (click)="d('Cross click')"
+    >
+      Cancel
+    </button>
+    <button type="button" class="btn rounded btn-ys" (click)="c('Confirm')">
+      Confirm
+    </button>
+  </div>
+</ng-template>

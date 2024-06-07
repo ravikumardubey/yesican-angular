@@ -1,0 +1,50 @@
+.element-icon {
+  width: 150px;
+  height: 150px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 75px;
+  color: #ffffff;
+
+}
+
+.card {
+  cursor: pointer;
+}
+
+.service-card:hover {
+  transition: 0.5s;
+  box-shadow: 0 0.5rem 1rem rgba(1, 41, 102, 1) !important;
+}
+
+.service-card-1:hover {
+  transition: 0.5s;
+  box-shadow: 0 0.5rem 1rem rgba(143, 66, 10, 1) !important;
+}
+
+.service-card-2:hover {
+  transition: 0.5s;
+  box-shadow: 0 0.5rem 1rem rgba(4, 142, 218, 1) !important;
+}
+
+.service-card-3:hover {
+  transition: 0.5s;
+  box-shadow: 0 0.5rem 1rem rgba(10, 102, 42, 1) !important;
+}
+
+.list-unstyled li {
+  display: flex;
+  align-items: baseline;
+
+}
+
+.list-unstyled li iconify-icon {
+  margin-right: 10px;
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  h4 {
+    font-size: 1.25rem !important;
+  }
+}

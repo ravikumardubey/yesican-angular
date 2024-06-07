@@ -1,0 +1,150 @@
+<div class="row" *ngIf="!showLoading">
+  <div class="col-12">
+    <div class="row position-sticky top-0">
+      <div class="col-12 py-3">
+        <div class="d-flex justify-content-between">
+          <h3>{{ isEdit ? "Edit Article" : "New Article" }}</h3>
+          <div class="hstack gap-2">
+            <div>
+              <div class="btn btn-secondary" routerLink="/admin/articles">
+                Cancel
+              </div>
+            </div>
+            <div>
+              <div class="btn btn-ys" (click)="submitData()">
+                {{ isEdit ? "Update" : "Create" }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="mb-3">
+          <label class="form-label">Title</label>
+          <input type="text" [(ngModel)]="title" class="form-control" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-4">
+    <label class="form-label required">Category</label>
+    <div class="input-group">
+      <select class="form-select" [(ngModel)]="selectedCategory">
+        <option [value]="0" disabled>Select a Category</option>
+        <option [value]="item.id" *ngFor="let item of categories">
+          {{ item.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="mb-3 col-12 col-md-4">
+    <label class="form-label">Tags (Optional)</label>
+    <ng-select
+      [items]="tags$ | async"
+      bindLabel="name"
+      [addTag]="true"
+      [multiple]="true"
+      [hideSelected]="true"
+      [trackByFn]="trackByFn"
+      [minTermLength]="2"
+      [loading]="tagsLoading"
+      typeToSearchText="Please enter 2 or more characters"
+      [typeahead]="tagsInput$"
+      [(ngModel)]="selectedTags"
+    >
+    </ng-select>
+  </div>
+  <div class="col-12 col-md-4">
+    <label class="form-label">Status</label>
+    <div ngbDropdown>
+      <button type="button" class="btn btn-outline-primary" ngbDropdownToggle>
+        {{ getStatus() }}
+      </button>
+      <div ngbDropdownMenu>
+        <button ngbDropdownItem (click)="updateStatus('Published')">
+          Published
+        </button>
+        <button ngbDropdownItem (click)="updateStatus('Upcoming')">
+          Upcoming
+        </button>
+        <button ngbDropdownItem (click)="updateStatus('Draft')">Draft</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Article Image</label>
+    <p
+      class="text-primary text-center cursor-pointer border rounded image-add"
+      (click)="fileInput.click()"
+      *ngIf="!image"
+    >
+      <iconify-icon icon="mdi:upload" inline></iconify-icon> Upload Article
+      Image
+      <input
+        #fileInput
+        type="file"
+        accept="image/jpeg, image/png"
+        (change)="onSelect($event, imageModal)"
+        hidden
+      />
+    </p>
+    <div *ngIf="image" class="image-add position-relative border rounded mb-3">
+      <div
+        class="position-absolute top-0 end-0 cursor-pointer"
+        (click)="clearImage()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="#dc3545"
+            d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41L15.59 7Z"
+          />
+        </svg>
+      </div>
+      <img
+        [src]="image"
+        class="rounded object-fit-contain"
+        width="90%"
+        height="200"
+        alt="article image"
+      />
+    </div>
+  </div>
+  <editor
+    [init]="config"
+    [(ngModel)]="content"
+    [ngModelOptions]="{ standalone: true }"
+  ></editor>
+</div>
+<div class="row h-100" *ngIf="showLoading">
+  <div class="col-12">
+    <div>
+      <div
+        class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+      >
+        <div class="spinner-border text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #imageModal let-modal>
+  <app-image-cropper
+    (closeModal)="close()"
+    (image)="updateImage($event)"
+    (croppedImageUpdate)="updateCroppedImage($event)"
+    [imageChangedEvent]="imageChangedEvent"
+    [imageFileName]="imageFileName"
+    [aspectRatio]="16 / 9"
+    [maintainAspectRatio]="false"
+  ></app-image-cropper>
+</ng-template>

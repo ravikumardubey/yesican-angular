@@ -1,0 +1,15 @@
+.quotes-bg-layer {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #15A08F;
+}
+
+.quote-card {
+  background: rgba(0, 0, 0, .5);
+}
+
+.quote-card:hover {
+  box-shadow: 0 0 1rem 5px #ffed00 !important;
+  transition: 1s;
+}

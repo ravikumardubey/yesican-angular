@@ -1,0 +1,134 @@
+<app-page-title [title]="'Contact Us'"></app-page-title>
+
+<div class="bg-light container-am pb-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-9">
+      <h3 class="text-center py-3 fw-bold">
+        Be a Changemaker and Positive Ambassador
+      </h3>
+      <div class="card">
+        <div class="card-body p-4">
+          <form
+            class="row g-3 pt-3"
+            [formGroup]="contactForm"
+            (ngSubmit)="submit()"
+          >
+            <div class="col-12 col-md-6">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label required">Profession</label>
+              <select class="form-select" formControlName="profession">
+                <option value="actor">Actor</option>
+                <option value="actress">Actress</option>
+                <option value="air traffic controller">
+                  Air Traffic Controller
+                </option>
+                <option value="architect">Architect</option>
+                <option value="artist">Artist</option>
+                <option value="attorney">Attorney</option>
+                <option value="banker">Banker</option>
+                <option value="bartender">Bartender</option>
+                <option value="barber">Barber</option>
+                <option value="bookkeeper">Bookkeeper</option>
+                <option value="builder">Builder</option>
+                <option value="businessman">Businessman</option>
+                <option value="businesswoman">Businesswoman</option>
+                <option value="businessperson">Businessperson</option>
+                <option value="butcher">Butcher</option>
+                <option value="carpenter">Carpenter</option>
+                <option value="cashier">Cashier</option>
+                <option value="chef">Chef</option>
+                <option value="coach">Coach</option>
+                <option value="dental hygienist">Dental Hygienist</option>
+                <option value="dentist">Dentist</option>
+                <option value="designer">Designer</option>
+                <option value="developer">Developer</option>
+                <option value="dietician">Dietician</option>
+                <option value="doctor">Doctor</option>
+                <option value="economist">Economist</option>
+                <option value="editor">Editor</option>
+                <option value="electrician">Electrician</option>
+                <option value="engineer">Engineer</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label">Date of Birth</label>
+              <input
+                class="form-control"
+                placeholder="dd-mm-yyyy"
+                formControlName="dob"
+                ngbDatepicker
+                [maxDate]="maxDate"
+                [minDate]="{ year: 1930, month: 1, day: 1 }"
+                #d="ngbDatepicker"
+                (click)="d.toggle()"
+                onkeydown="return false"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Email</label>
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+              />
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Message</label>
+              <textarea
+                name=""
+                class="form-control"
+                formControlName="message"
+                id=""
+                cols="30"
+                rows="5"
+              ></textarea>
+            </div>
+            <div class="col-12 col-md-6">
+              <label class="form-label required">Purpose</label>
+              <select class="form-select" formControlName="purpose">
+                <option value="Mentorship">Mentorship</option>
+                <option value="Dr AK Astro-Clinic">Dr AK Astro-Clinic</option>
+                <option value="Your Issues-Our Remedy">
+                  Your Issues-Our Remedy
+                </option>
+                <option value="Online Classes">Online Classes</option>
+                <option value="Become a Volunteer">Become a Volunteer</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <div
+                [ngClass]="{ 'd-none': !!!error }"
+                class="alert alert-danger py-2"
+                role="alert"
+                [innerText]="error"
+              ></div>
+            </div>
+            <div class="col-12 text-center">
+              <button
+                class="btn btn-outline-primary border"
+                type="submit"
+                *ngIf="!showLoading"
+              >
+                Submit
+              </button>
+              <div
+                class="spinner-border text-primary"
+                role="status"
+                *ngIf="showLoading"
+              >
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

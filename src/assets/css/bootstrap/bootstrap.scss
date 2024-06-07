@@ -1,0 +1,51 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+$body-bg: #fff;
+$body-color: #012966;
+// $body-color: #4d6995;
+// $body-color: #17B29F;
+$font-family-base: "nunito", sans-serif;
+$font-size-base: 1rem;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  am: 1600px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+  am: 1560px,
+);
+$nav-link-font-size: 1rem;
+$nav-link-font-weight: 400;
+$table-cell-padding-y: 0.95rem;
+$table-cell-padding-x: 0.95rem;
+$modal-content-border-radius: 0.625rem;
+$badge-color: #333;
+$custom-colors: (
+  'ys': #FFED00,
+  'red':#ff0000,
+  'ys-dark-blue':#012966,
+  'ys-orange':#8F420A,
+  'ys-blue': #048EDA,
+  'ys-green':#0A662A
+);
+$theme-colors: map-merge($theme-colors, $custom-colors );
+$enable-shadows: true;
+$enable-gradients: true;
+$enable-negative-margins: true;
+$aspect-ratios: (
+  "1x1": 100%,
+  "4x3": calc(3 / 4 * 100%),
+  "16x9": calc(9 / 16 * 100%),
+  "21x9": calc(9 / 21 * 100%),
+  "11x16": calc(16 / 11 * 100%)
+);
+@import "../../../../node_modules/bootstrap/scss/bootstrap";

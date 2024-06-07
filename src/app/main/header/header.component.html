@@ -1,0 +1,200 @@
+<nav
+  class="navbar fixed-top shadow-sm shadow-bottom navbar-expand-lg bg-white py-0"
+>
+  <div class="container-am bg-white border border-0 border-bottom">
+    <div
+      class="d-flex flex-column flex-lg-row justify-content-between align-content-center w-100"
+    >
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center h-100">
+          <a
+            class="navbar-brand"
+            routerLink="/"
+            (click)="closeMobileNavbar()"
+            aria-label="Logo"
+          >
+            <img
+              src="assets/images/logo.webp"
+              alt="Yes I Can Logo "
+              width="67"
+              height="60"
+            />
+          </a>
+          <div
+            *ngIf="showSideNav"
+            (click)="toggleMobileSideNav()"
+            class="d-flex d-md-none cursor-pointer"
+          >
+            <iconify-icon icon="mdi:menu" class="fs-2" inline></iconify-icon>
+          </div>
+        </div>
+        <button
+          class="navbar-toggler"
+          (click)="toggleMobileNavbar()"
+          type="button"
+          aria-label="Toggle Mobile Navigation"
+        >
+          <span class="navbar-toggler-icon" *ngIf="!showMobileNavbar"></span>
+          <iconify-icon
+            icon="mdi:close"
+            class="fs-2"
+            inline
+            *ngIf="showMobileNavbar"
+          ></iconify-icon>
+        </button>
+      </div>
+      <div
+        class="collapse navbar-collapse flex-lg-grow-0 bg-white"
+        [ngClass]="{
+          collapse: !showMobileNavbar,
+          'show  py-3': showMobileNavbar
+        }"
+      >
+        <div class="navbar-nav d-flex align-items-start fs-14">
+          <div
+            class="nav-item"
+            ngbDropdown
+            placement="bottom-end"
+            (click)="$event.preventDefault()"
+          >
+            <a class="nav-link" ngbDropdownToggle id="about" role="button">
+              About
+            </a>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="about"
+              class="dropdown-menu dropdown-menu-end"
+            >
+              <a
+                ngbDropdownItem
+                routerLink="/about/academy"
+                (click)="closeMobileNavbar()"
+                >Academy</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/about/founder"
+                (click)="closeMobileNavbar()"
+                >Founder</a
+              >
+            </div>
+          </div>
+          <div
+            class="nav-item"
+            ngbDropdown
+            placement="bottom-end"
+            (click)="$event.preventDefault()"
+          >
+            <a class="nav-link" ngbDropdownToggle id="services" role="button"
+              >Services</a
+            >
+            <div
+              ngbDropdownMenu
+              aria-labelledby="services"
+              class="dropdown-menu dropdown-menu-end"
+            >
+              <a
+                ngbDropdownItem
+                routerLink="/services/mentorship"
+                (click)="closeMobileNavbar()"
+                >Mentorship</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/services/astro-clinic"
+                (click)="closeMobileNavbar()"
+                >Dr AK Astro-Clinic</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/services/your-issues-our-remedy"
+                (click)="closeMobileNavbar()"
+                >Your Issues-Our Remedy</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/services/online-classes"
+                (click)="closeMobileNavbar()"
+                >Online Classes</a
+              >
+            </div>
+          </div>
+          <div class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/books"
+              (click)="closeMobileNavbar()"
+              routerLinkActive="active"
+              >Books</a
+            >
+          </div>
+          <div
+            class="nav-item"
+            ngbDropdown
+            placement="bottom-end"
+            (click)="$event.preventDefault()"
+          >
+            <a class="nav-link" ngbDropdownToggle id="article" role="button"
+              >Article</a
+            >
+            <div
+              ngbDropdownMenu
+              aria-labelledby="article"
+              class="dropdown-menu dropdown-menu-end"
+            >
+              <a
+                ngbDropdownItem
+                routerLink="/article/published"
+                (click)="closeMobileNavbar()"
+                >Published</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/article/upcoming"
+                (click)="closeMobileNavbar()"
+                >Upcoming</a
+              >
+            </div>
+          </div>
+          <div
+            class="nav-item"
+            ngbDropdown
+            placement="bottom-end"
+            (click)="$event.preventDefault()"
+          >
+            <a class="nav-link" ngbDropdownToggle id="gallery" role="button">
+              Gallery
+            </a>
+            <div
+              ngbDropdownMenu
+              aria-labelledby="gallery"
+              class="dropdown-menu dropdown-menu-end"
+            >
+              <a
+                ngbDropdownItem
+                routerLink="/gallery/photos"
+                (click)="closeMobileNavbar()"
+                >Photos</a
+              >
+              <a
+                ngbDropdownItem
+                routerLink="/gallery/videos"
+                (click)="closeMobileNavbar()"
+                >Videos</a
+              >
+            </div>
+          </div>
+          <div class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/contact-us"
+              routerLinkActive="active"
+              (click)="closeMobileNavbar()"
+              >Contact Us</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

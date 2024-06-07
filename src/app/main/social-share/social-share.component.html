@@ -1,0 +1,34 @@
+<div class="share-button" (click)="toggleShareIcons()">
+  <iconify-icon
+    *ngIf="!showIcons"
+    icon="pepicons-pop:share-android-circle-filled"
+    class="fs-2 text-ys bg-white rounded-circle"
+  ></iconify-icon>
+  <iconify-icon
+    *ngIf="showIcons"
+    icon="jam:close-circle-f"
+    class="fs-2 text-ys bg-white rounded-circle"
+  ></iconify-icon>
+</div>
+<div class="share-icons fs-2" *ngIf="showIcons">
+  <a href="#" class="share-icon" (click)="shareOnFacebook()">
+    <iconify-icon icon="logos:facebook"></iconify-icon>
+  </a>
+  <a href="#" class="share-icon" (click)="shareOnTwitter()">
+    <iconify-icon icon="line-md:twitter-x"></iconify-icon>
+  </a>
+  <a
+    href="#"
+    class="share-icon d-block d-lg-none"
+    (click)="shareOnWhatsAppMobile()"
+  >
+    <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+  </a>
+  <a
+    href="#"
+    class="share-icon d-none d-lg-block"
+    (click)="shareOnWhatsAppDesktop()"
+  >
+    <iconify-icon icon="logos:whatsapp-icon"></iconify-icon>
+  </a>
+</div>

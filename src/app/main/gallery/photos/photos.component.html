@@ -1,0 +1,95 @@
+<app-page-title [title]="'Photo Gallery'"></app-page-title>
+<div class="container-am py-5">
+  <div class="row">
+    <div class="col-12">
+      <ul ngbNav #nav="ngbNav" class="nav-pills" [(activeId)]="activeNavTab">
+        <li [ngbNavItem]="nav.id" *ngFor="let nav of categories">
+          <button ngbNavLink (click)="updateCategory(nav.id)">
+            {{ nav.name }}
+          </button>
+          <ng-template ngbNavContent>
+            <div class="row">
+              <div
+                class="col-lg-3 col-12 col-md-6 col-sm-6 mb-3"
+                *ngFor="let item of images; index as i"
+              >
+                <img
+                  [src]="item.imageUrl"
+                  class="gallery-image rounded cursor-pointer"
+                  alt=""
+                  (click)="showImageViewer(i)"
+                />
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+      <div class="py-3"><div [ngbNavOutlet]="nav"></div></div>
+    </div>
+    <div class="col-12 text-center" *ngIf="hasNextPage && !showLoading">
+      <div class="btn btn-primary" (click)="loadMore()">Load More</div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showLoading">
+  <div
+    class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+  >
+    <div class="spinner-border text-warning" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+</div>
+<div *ngIf="imageViewer" class="viewer-container">
+  <div class="viewer-content position-relative">
+    <div class="position-absolute top-0 end-0 z-2 text-white p-4">
+      <iconify-icon
+        icon="mdi:close-circle"
+        class="fs-1 cursor-pointer"
+        (click)="closeImageViewer()"
+      ></iconify-icon>
+    </div>
+    <div class="middle-content z-1" #middle>
+      <ngb-carousel
+        #carousel
+        [animation]="false"
+        [interval]="0"
+        [showNavigationIndicators]="false"
+        [showNavigationArrows]="images && images.length > 1"
+        (slide)="slide($event)"
+        [activeId]="'ngb-slide-' + activeID.toString()"
+      >
+        <ng-container *ngFor="let image of images; index as i">
+          <ng-template ngbSlide [id]="'ngb-slide-' + i">
+            <pinch-zoom disableZoomControl="auto" class="viewer-image"
+              ><img
+                [src]="image.imageUrl"
+                [style.height.px]="imageHeight"
+                [style.width.px]="imageWidth"
+                alt="Image"
+            /></pinch-zoom>
+          </ng-template>
+        </ng-container>
+      </ngb-carousel>
+    </div>
+    <div
+      class="d-flex align-items-center overflow-auto m-2 bottom-content"
+      *ngIf="images && images.length > 1"
+    >
+      <div class="pe-2" *ngFor="let image of images; index as i">
+        <div
+          class="d-block cursor-pointer"
+          (click)="setActiveId(i)"
+          [ngClass]="{ 'border  border-3 rounded-3 border-ys': i === activeID }"
+        >
+          <img
+            [src]="image.imageUrl"
+            loading="lazy"
+            alt="Image"
+            class="media-thumbnail rounded"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap py-3">
+  <div>
+    <h2 class="m-0">Photos Categories</h2>
+  </div>
+  <div class="d-flex flex-wrap align-items-center">
+    <div class="me-2 my-2">
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control border-end-0"
+          [(ngModel)]="searchText"
+          placeholder="Search by Name"
+          (keyup.enter)="searchCategories()"
+        />
+        <div class="input-group-text p-0">
+          <div
+            (click)="searchCategories()"
+            class="btn rounded-0 rounded-end h-100 d-flex align-items-center justify-content-center p-0 px-2"
+          >
+            <iconify-icon icon="uil:search" class="fs-5"></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div
+        class="btn btn-danger me-2"
+        *ngIf="isSearched"
+        (click)="clearSearch()"
+      >
+        Reset
+      </div>
+    </div>
+    <div>
+      <div class="btn btn-primary" (click)="openModal(createCategory)">
+        <iconify-icon icon="mdi:plus" class="fs-6 pe-2" inline></iconify-icon
+        >Add Category
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table align-middle mb-0">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              [checked]="isAllCheckBoxChecked()"
+              (change)="checkAllCheckBox($event)"
+            />
+            <label class="form-check-label" for="responsivetableCheck"></label>
+          </div>
+        </th>
+
+        <th scope="col">Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="!showLoading">
+      <tr *ngFor="let item of categories; let i = index">
+        <th scope="row">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="{{ item.id }}"
+              [(ngModel)]="categories[i].checked"
+            />
+            <label
+              class="form-check-label"
+              for="responsivetableCheck01"
+            ></label>
+          </div>
+        </th>
+
+        <td>
+          {{ item.name }}
+        </td>
+
+        <th scope="col">
+          <div class="d-flex">
+            <div
+              class="btn btn-primary btn-sm me-2"
+              (click)="openEditModal(EditCategory, item)"
+            >
+              <iconify-icon icon="mdi:pencil" inline></iconify-icon>
+            </div>
+
+            <div
+              class="btn btn-danger btn-sm"
+              (click)="deleteCategory(item.id)"
+            >
+              <iconify-icon icon="mdi:trash" inline></iconify-icon>
+            </div>
+          </div>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="showLoading">
+    <div
+      class="d-flex justify-content-center align-items-center w-100 h-100 my-5 py-5"
+    >
+      <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!showLoading && !count">
+    <div
+      class="d-flex flex-column justify-content-center align-items-center w-100 h-100 my-5 py-5"
+    >
+      <img src="assets/images/no-data.svg" alt="no data" />
+      No Categories
+    </div>
+  </div>
+  <ng-container *ngIf="count > 12 && !showLoading">
+    <ngb-pagination
+      (pageChange)="selectPage($event)"
+      [pageSize]="12"
+      [(page)]="page"
+      [maxSize]="5"
+      [rotate]="true"
+      [collectionSize]="count"
+      [boundaryLinks]="true"
+      class="d-flex justify-content-end"
+    ></ngb-pagination>
+  </ng-container>
+</div>
+
+<ng-template #createCategory let-modal>
+  <div class="modal-header">
+    <h4 class="m-0">New Category</h4>
+    <div class="btn-close cursor-pointer" (click)="modal.dismiss()"></div>
+  </div>
+  <div class="modal-body">
+    <input
+      type="text"
+      [(ngModel)]="newCategory"
+      class="form-control mt-4"
+      placeholder="Enter Category Name"
+    />
+    <div class="text-danger" [style.min-height.px]="25">
+      {{ error }}
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary" (click)="createNewCategory()">Create</div>
+  </div>
+</ng-template>
+<ng-template #EditCategory let-modal>
+  <div class="modal-header">
+    <h4 class="m-0">Edit Category</h4>
+    <div class="btn-close cursor-pointer" (click)="modal.dismiss()"></div>
+  </div>
+  <div class="modal-body">
+    <input
+      type="text"
+      [(ngModel)]="editCategoryName"
+      class="form-control mt-4"
+      placeholder="Enter Category Name"
+    />
+    <div class="text-danger" [style.min-height.px]="25">
+      {{ error }}
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="btn btn-primary" (click)="updateCategory()">Update</div>
+  </div>
+</ng-template>

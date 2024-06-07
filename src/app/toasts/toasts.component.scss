@@ -1,0 +1,31 @@
+:host {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 5px !important;
+  width: max-content !important;
+  z-index: 1090;
+}
+
+.toast {
+  font-size: 1rem !important;
+  font-weight: normal !important;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+  background-color: black !important;
+  border-color: black !important;
+}
+
+.close {
+  opacity: 1 !important;
+}
+
+img {
+  width: 32px;
+  height: 32px
+}

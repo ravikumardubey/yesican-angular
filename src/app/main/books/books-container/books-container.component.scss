@@ -1,0 +1,24 @@
+.nav-pills .nav-link {
+  background-color: #4d6995 !important;
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 15px 20px;
+  border: 0.5px solid #ffffff !important;
+}
+
+@media (max-width:767.98px) {
+  .nav-pills {
+    padding: 8px 16px;
+  }
+}
+
+.nav-pills .nav-link.active {
+  background-color: #fff315 !important;
+  color: #000000 !important;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #fff315 !important;
+  color: #000000 !important;
+}
